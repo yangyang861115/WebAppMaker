@@ -23,6 +23,16 @@
                 controller: "EditDeveloperController",
                 controllerAs: "model"
             })
+            .when("/developer/:username/application", {
+                templateUrl: "views/application/application-list.view.html",
+                controller: "ApplicationListController",
+                controllerAs: "model"
+            })
+            .when("/developer/:username/application/new",{
+                templateUrl: "views/application/application-new.view.html",
+                controller: "NewApplicationController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/developer"
             });
