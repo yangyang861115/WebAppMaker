@@ -8,13 +8,18 @@
 
     function developerService($http){
         var api = {
-            createDeveloper: createDeveloper
+            createDeveloper: createDeveloper,
+            findAllDevelopers: findAllDevelopers
         };
         return api;
 
         function createDeveloper(developer){
             console.log(developer);
             return $http.post("/api/developer", developer);
+        }
+
+        function findAllDevelopers() {
+            return $http.get("/api/developer");
         }
     }
 })();

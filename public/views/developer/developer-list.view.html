@@ -2,3 +2,13 @@
     <span class="glyphicon glyphicon-plus"></span>
 </a>
 <h2>Developers</h2>
+
+<div ng-if="model.error" class="alert alert-success" role="alert">
+    {{model.error}}
+</div>
+
+<table class="table table-striped">
+    <tr ng-repeat="developer in model.developers">
+        <td>{{developer.username}}</td>
+    </tr>
+</table>

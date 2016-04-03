@@ -9,18 +9,31 @@ module.exports = function(db){
     var Developer = mongoose.model("Developer", DeveloperSchema);
 
     var api = {
-        createDeveloper: createDeveloper
+        createDeveloper: createDeveloper,
+        findAllDevelopers: findAllDevelopers
     };
     return api;
 
     function createDeveloper(developer){
         var deferred = q.defer();
         Developer.create(developer, function(err, doc){
-           //console.log(doc);
+            console.log(doc);
             if(err) {
                 deferred.reject(err);
             } else {
                 deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findAllDevelopers(){
+        var deferred = q.defer();
+        Developer.find(function(err, doc){
+            if(!err) {
+                deferred.resolve(doc);
+            } else {
+                deferred.reject(err);
             }
         });
         return deferred.promise;

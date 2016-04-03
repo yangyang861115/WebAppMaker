@@ -7,8 +7,22 @@
         .controller("DeveloperListController", developerListController)
         .controller("NewDeveloperController", newDeveloperController);
 
-    function developerListController() {
+    function developerListController(DeveloperService) {
         var vm = this;
+        function init(){
+            DeveloperService
+                .findAllDevelopers()
+                .then(
+                    function(response){
+                        vm.developers = response.data;
+                    },
+                    function(err){
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
+
 
 
     }
