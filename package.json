@@ -1,0 +1,24 @@
+{
+  "name": "web-app-maker",
+  "version": "1.0.0",
+  "description": "web app maker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangyang861115/WebAppMaker.git"
+  },
+  "author": "yang yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yangyang861115/WebAppMaker/issues"
+  },
+  "homepage": "https://github.com/yangyang861115/WebAppMaker#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.10"
+  }
+}
