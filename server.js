@@ -12,5 +12,5 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/public'));
 
-require('./app/app.js')(db);
+require('./app/app.js')(app, db);
 app.listen(3000);
