@@ -10,7 +10,8 @@ module.exports = function () {
 
     var api = {
         createApplication: createApplication,
-        findApplicationsForUsername: findApplicationsForUsername
+        findApplicationsForUsername: findApplicationsForUsername,
+        findApplicationById: findApplicationById
     };
     return api;
 
@@ -31,7 +32,7 @@ module.exports = function () {
         var deferred = q.defer();
         Application.find(
             {developerUsername: username},
-            function(err, applications) {
+            function (err, applications) {
                 if (!err) {
                     deferred.resolve(applications);
                 } else {
@@ -41,4 +42,17 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function findApplicationById(applicationId) {
+        var deferred = q.defer();
+        Application.findById(
+            applicationId,
+            function (err, application) {
+                if(!err) {
+                    deferred.resolve(application);
+                }else {
+                    deferred.reject(err);
+                }
+            });
+        return deferred.promise;
+    }
 }

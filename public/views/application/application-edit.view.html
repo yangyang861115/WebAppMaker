@@ -1,0 +1,9 @@
+<a href="#/developer/{{model.username}}/application"
+   class="pull-left btn btn-danger">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<h2>Edit Application</h2>
+<div ng-if="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
+{{model.application}}

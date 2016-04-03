@@ -9,7 +9,8 @@
     function applicationService($http){
         var api = {
             createApplication: createApplication,
-            findApplicationsForUsername: findApplicationsForUsername
+            findApplicationsForUsername: findApplicationsForUsername,
+            findApplicationById: findApplicationById
         };
         return api;
 
@@ -19,6 +20,10 @@
 
         function findApplicationsForUsername(username) {
             return $http.get("/api/developer/" + username+ "/application");
+        }
+
+        function findApplicationById(applicationId) {
+            return $http.get("/api/application/"+ applicationId);
         }
     }
 })();

@@ -5,24 +5,26 @@
     angular
         .module("WebAppMakerApp")
         .controller("ApplicationListController", applicationListController)
-        .controller("NewApplicationController", newApplicationController);
+        .controller("NewApplicationController", newApplicationController)
+        .controller("EditApplicationController", editApplicationController);
 
     function applicationListController($routeParams, ApplicationService) {
         var vm = this;
         vm.username = $routeParams.username;
 
-        function init(){
+        function init() {
             ApplicationService
                 .findApplicationsForUsername(vm.username)
                 .then(
-                    function(response) {
+                    function (response) {
                         vm.applications = response.data;
                     },
-                    function(err) {
-                        vm.error =  err;
+                    function (err) {
+                        vm.error = err;
                     }
                 );
         }
+
         init();
     }
 
@@ -36,14 +38,35 @@
             ApplicationService
                 .createApplication(application)
                 .then(
-                    function(response) {
+                    function (response) {
                         console.log(response.data);
                         $location.url("/developer/" + vm.username + "/application");
                     },
-                    function(err) {
+                    function (err) {
                         vm.error = err;
                     }
                 );
         }
+    }
+
+    function editApplicationController($routeParams, ApplicationService, $location) {
+        var vm = this;
+        vm.username = $routeParams.username;
+        vm.applicationId = $routeParams.applicationId;
+
+        function init(){
+            ApplicationService
+                .findApplicationById(vm.applicationId)
+                .then(
+                    function (response) {
+                        vm.application = response.data;
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+        }
+        init();
+
     }
 })();
