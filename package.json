@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/yangyang861115/WebAppMaker#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "mongoose": "^4.4.10"
+    "mongoose": "^4.4.10",
+    "multer": "^1.1.0"
   }
 }
