@@ -11,7 +11,8 @@
             createDeveloper: createDeveloper,
             findAllDevelopers: findAllDevelopers,
             findDeveloperByUsername: findDeveloperByUsername,
-            updateDeveloper : updateDeveloper
+            updateDeveloper: updateDeveloper,
+            deleteDeveloper: deleteDeveloper
         };
         return api;
 
@@ -28,7 +29,11 @@
         }
 
         function updateDeveloper(developer) {
-            return $http.put("/api/developer/"+ developer.username, developer);
+            return $http.put("/api/developer/" + developer.username, developer);
+        }
+
+        function deleteDeveloper(developer) {
+            return $http.delete("/api/developer/" + developer.username);
         }
     }
 })();

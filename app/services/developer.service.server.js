@@ -6,6 +6,7 @@ module.exports = function(app, developerModel){
     app.get("/api/developer", findAllDevelopers);
     app.get("/api/developer/:username", findDeveloperByUsername);
     app.put("/api/developer/:username", updateDeveloper);
+    app.delete("/api/developer/:username",deleteDeveloper);
 
     function createDeveloper(req, res) {
         var developer = req.body;
@@ -61,5 +62,20 @@ module.exports = function(app, developerModel){
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function deleteDeveloper(req, res) {
+        var username = req.params.username;
+        developerModel
+            .deleteDeveloper(username)
+            .then(
+                function(stats) {
+                    res.send(200);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 }

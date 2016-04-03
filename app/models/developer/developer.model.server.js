@@ -12,7 +12,8 @@ module.exports = function(db){
         createDeveloper: createDeveloper,
         findAllDevelopers: findAllDevelopers,
         findDeveloperByUsername: findDeveloperByUsername,
-        updateDeveloper: updateDeveloper
+        updateDeveloper: updateDeveloper,
+        deleteDeveloper: deleteDeveloper
     };
     return api;
 
@@ -65,6 +66,20 @@ module.exports = function(db){
                 deferred.reject(err);
             }
         });
+        return deferred.promise;
+    }
+
+    function deleteDeveloper(username) {
+        var deferred = q.defer();
+        Developer.remove(
+            {username: username},
+            function(err, stats){
+                if(!err) {
+                    deferred.resolve(stats);
+                } else {
+                    deferred.reject(err);
+                }
+            });
         return deferred.promise;
     }
 };

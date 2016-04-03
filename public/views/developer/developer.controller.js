@@ -57,6 +57,7 @@
 
         var vm = this;
         vm.updateDeveloper = updateDeveloper;
+        vm.deleteDeveloper = deleteDeveloper;
 
         function init(){
             DeveloperService
@@ -73,7 +74,6 @@
         init();
 
         function updateDeveloper(developer) {
-            console.log(developer);
             DeveloperService
                 .updateDeveloper(developer)
                 .then(
@@ -86,5 +86,17 @@
                 );
         }
 
+        function deleteDeveloper(developer) {
+            DeveloperService
+                .deleteDeveloper(developer)
+                .then(
+                    function(response) {
+                        $location.url("/developer");
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
     }
 })();
