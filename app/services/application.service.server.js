@@ -3,7 +3,7 @@
  */
 module.exports = function(app, applicationModel){
     app.post("/api/developer/:username/application", createApplication);
-
+    app.get("/api/developer/:username/application", findApplicationsForUsername);
 
     function createApplication(req, res){
         var username = req.params.username;
@@ -18,6 +18,19 @@ module.exports = function(app, applicationModel){
                     res.status(400).send(err);
                 }
             );
+    }
 
+    function findApplicationsForUsername(req, res){
+        var username = req.params.username;
+        applicationModel
+            .findApplicationsForUsername(username)
+            .then(
+                function(applications) {
+                    res.json(applications);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 }

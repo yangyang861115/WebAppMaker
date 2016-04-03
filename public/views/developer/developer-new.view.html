@@ -21,4 +21,6 @@
        placeholder="Last Name"/>
 
 <span>{{model.developer}}</span>
-<span>{{model.error}}</span>
+<div ng-if="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>

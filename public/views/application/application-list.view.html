@@ -7,3 +7,8 @@
     <span class="glyphicon glyphicon-plus"></span>
 </a>
 <h2>Application</h2>
+<div ng-if="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
+
+{{model.applications}}

@@ -9,7 +9,8 @@ module.exports = function () {
     var Application = mongoose.model("Application", ApplicationSchema);
 
     var api = {
-        createApplication: createApplication
+        createApplication: createApplication,
+        findApplicationsForUsername: findApplicationsForUsername
     };
     return api;
 
@@ -19,6 +20,20 @@ module.exports = function () {
             function (err, application) {
                 if (!err) {
                     deferred.resolve(application);
+                } else {
+                    deferred.reject(err);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function findApplicationsForUsername(username) {
+        var deferred = q.defer();
+        Application.find(
+            {developerUsername: username},
+            function(err, applications) {
+                if (!err) {
+                    deferred.resolve(applications);
                 } else {
                     deferred.reject(err);
                 }
