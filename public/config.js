@@ -18,6 +18,11 @@
                 controller: "NewDeveloperController",
                 controllerAs: "model"
             })
+            .when("/developer/edit/:username", {
+                templateUrl: "views/developer/developer-edit.view.html",
+                controller: "EditDeveloperController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/developer"
             });

@@ -10,7 +10,9 @@ module.exports = function(db){
 
     var api = {
         createDeveloper: createDeveloper,
-        findAllDevelopers: findAllDevelopers
+        findAllDevelopers: findAllDevelopers,
+        findDeveloperByUsername: findDeveloperByUsername,
+        updateDeveloper: updateDeveloper
     };
     return api;
 
@@ -32,6 +34,33 @@ module.exports = function(db){
         Developer.find(function(err, doc){
             if(!err) {
                 deferred.resolve(doc);
+            } else {
+                deferred.reject(err);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findDeveloperByUsername(username){
+        var deferred = q.defer();
+        Developer.findOne({username: username}, function(err, doc){
+            if(!err) {
+                deferred.resolve(doc);
+            } else {
+                deferred.reject(err);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function updateDeveloper(username, developer) {
+        var deferred = q.defer();
+        Developer.update(
+            {username: username},
+            {$set: developer},
+            function(err, stats){
+            if(!err) {
+                deferred.resolve(stats);
             } else {
                 deferred.reject(err);
             }
