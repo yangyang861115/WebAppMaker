@@ -11,7 +11,9 @@ module.exports = function () {
     var api = {
         createApplication: createApplication,
         findApplicationsForUsername: findApplicationsForUsername,
-        findApplicationById: findApplicationById
+        findApplicationById: findApplicationById,
+        removeApplication: removeApplication,
+        getMongooseModel: getMongooseModel
     };
     return api;
 
@@ -43,16 +45,15 @@ module.exports = function () {
     }
 
     function findApplicationById(applicationId) {
-        var deferred = q.defer();
-        Application.findById(
-            applicationId,
-            function (err, application) {
-                if(!err) {
-                    deferred.resolve(application);
-                }else {
-                    deferred.reject(err);
-                }
-            });
-        return deferred.promise;
+        // mongoose 4.x promises
+        return Application.findById(applicationId);
+    }
+
+    function removeApplication(applicationId) {
+        return Application.remove().where("_id").equals(applicationId);
+    }
+
+    function getMongooseModel(){
+        return Application;
     }
 }

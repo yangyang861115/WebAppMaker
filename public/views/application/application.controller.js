@@ -53,8 +53,9 @@
         var vm = this;
         vm.username = $routeParams.username;
         vm.applicationId = $routeParams.applicationId;
+        vm.removeApplication = removeApplication;
 
-        function init(){
+        function init() {
             ApplicationService
                 .findApplicationById(vm.applicationId)
                 .then(
@@ -66,7 +67,20 @@
                     }
                 );
         }
+
         init();
 
+        function removeApplication(application) {
+            ApplicationService
+                .removeApplication(application)
+                .then(
+                    function (response) {
+                        $location.url("/developer/" + vm.username + "/application");
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+        }
     }
 })();

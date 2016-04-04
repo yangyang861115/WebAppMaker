@@ -40,6 +40,17 @@
                 controller: "EditApplicationController",
                 controllerAs: "model"
             })
+            // page routes
+            .when("/developer/:username/application/:applicationId/page", {
+                templateUrl: "views/page/page-list.view.html",
+                controller: "PageListController",
+                controllerAs: "model"
+            })
+            .when("/developer/:username/application/:applicationId/new", {
+                templateUrl: "views/page/page-new.view.html",
+                controller: "NewPageController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/developer"
             });
