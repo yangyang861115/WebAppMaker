@@ -1,0 +1,19 @@
+<a href="#/developer/{{model.username}}/application"
+   class="pull-left btn btn-danger">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<a href="#/developer/{{model.username}}/application/{{model.applicationId}}/new"
+   class="pull-right btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span>
+</a>
+<h2>Pages</h2>
+
+<div ng-if="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
+
+<table class="table table-striped">
+    <tr ng-repeat="page in model.pages">
+        <td>{{page.name}}</td>
+    </tr>
+</table>
